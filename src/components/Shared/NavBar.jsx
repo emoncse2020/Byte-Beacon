@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link, NavLink } from "react-router";
 
 const NavBar = () => {
   const [theme, setTheme] = useState("light");
@@ -17,8 +18,33 @@ const NavBar = () => {
     }
   };
 
+  const links = (
+    <>
+      <li>
+        <NavLink
+          to={"/blogs"}
+          className={({ isActive }) => {
+            return isActive ? "text-primary font-bold" : "font-bold";
+          }}
+        >
+          Blogs
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to={"/bookMarks"}
+          className={({ isActive }) => {
+            return isActive ? "text-primary font-bold" : "font-bold";
+          }}
+        >
+          Bookmarks
+        </NavLink>
+      </li>
+    </>
+  );
+
   return (
-    <div className="navbar bg-base-100 shadow-sm">
+    <div className="navbar top-0 sticky z-20">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -42,49 +68,23 @@ const NavBar = () => {
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <a>Parent</a>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+            {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <NavLink
+          to={"/"}
+          className={({ isActive }) => {
+            return isActive
+              ? "text-4xl font-extrabold"
+              : "gap-0 text-3xl font-bold";
+          }}
+        >
+          <span className="text-primary">Byte</span>
+          <span className="text-secondary">Beacon</span>
+        </NavLink>
       </div>
       <div className="navbar-center hidden lg:flex">
-        <ul className="menu menu-horizontal px-1">
-          <li>
-            <a>Item 1</a>
-          </li>
-          <li>
-            <details>
-              <summary>Parent</summary>
-              <ul className="p-2">
-                <li>
-                  <a>Submenu 1</a>
-                </li>
-                <li>
-                  <a>Submenu 2</a>
-                </li>
-              </ul>
-            </details>
-          </li>
-          <li>
-            <a>Item 3</a>
-          </li>
-        </ul>
+        <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
       <div className="navbar-end">
         <label className="inline-flex items-center cursor-pointer">
