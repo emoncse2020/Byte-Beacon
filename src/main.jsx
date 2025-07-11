@@ -7,11 +7,11 @@ import router from "./route/route.jsx";
 import Home from "./pages/Home/Home.jsx";
 import MainLayouts from "./layouts/MainLayouts.jsx";
 import AuthProvider from "./AuthContext/AuthProvider.jsx";
+import { Toaster } from "react-hot-toast";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
-      <RouterProvider router={router}></RouterProvider>
-    </AuthProvider>
+    <RouterProvider router={router}></RouterProvider>
+    <Toaster></Toaster>
   </StrictMode>
 );
