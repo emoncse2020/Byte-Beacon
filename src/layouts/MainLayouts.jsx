@@ -3,15 +3,20 @@ import NavBar from "../components/Shared/NavBar";
 import Blogs from "../pages/Blogs/Blogs";
 import Bookmarks from "../pages/Bookmarks/Bookmarks";
 import Home from "../pages/Home/Home";
+import Footer from "../components/Shared/Footer";
 
 const MainLayouts = () => {
   return (
     <div>
-      <div className="h-16">
-        <header className="bg-gray-50 shadow px-16">
+      <div>
+        <header className="bg-gray-200 shadow-xl px-16 h-16">
           <NavBar></NavBar>
         </header>
-        <Outlet></Outlet>
+        <div className="min-h-[calc(100vh-288px)]">
+          <Outlet></Outlet>
+        </div>
+        {/* Footer */}
+        <Footer></Footer>
       </div>
     </div>
   );
