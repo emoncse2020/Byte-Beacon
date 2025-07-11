@@ -1,14 +1,16 @@
-import React, { useEffect, useState } from "react";
-import { data, useLoaderData } from "react-router";
+import { Link, useLoaderData, useNavigation } from "react-router";
 import BlogCard from "../BlogCard/BlogCard";
 
 const Blogs = () => {
+  const navigation = useNavigation();
   const blogs = useLoaderData();
+
+  if (navigation.state === "loading") return <Loader></Loader>;
   return (
     <section className="">
-      <h1>data: {blogs.length}</h1>
       <div className="container max-w-6xl p-6 mx-auto space-y-6 sm:space-y-12">
-        <a
+        <Link
+          to={`/blog/${blogs[0].id}`}
           rel="noopener noreferrer"
           href="#"
           className="block max-w-sm gap-3 mx-auto sm:max-w-full group hover:no-underline focus:no-underline lg:grid lg:grid-cols-12 "
@@ -27,7 +29,7 @@ const Blogs = () => {
             </span>
             <p>{blogs[0].description}</p>
           </div>
-        </a>
+        </Link>
         <div className="grid justify-center grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogs.map((blog) => (
             <BlogCard key={blog.id} blog={blog}></BlogCard>
